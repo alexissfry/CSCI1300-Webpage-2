@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A/B Testing</title>
+    <!-- import bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+    <!-- import Inter font -->
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <!-- import style sheet -->
+    <link rel="stylesheet" href="resources/styles.css" />
+  </head>
+  <body>
+    <main>
+      <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0" id="nav-text">Alexis Fry</span>
+        </div>
+      </nav>
+      <div class="landing-container space">
+        <h1>A/B Testing</h1>
+        <h2>Measuring the statistical impact of two different UI designs for MEDx</h2>
+      </div>
+      <div class="context-container">
+        <div class="row justify-content-start space">
+          <div class="col-lg-8 mx-auto">
+            <h1>Overview</h1>
+            <p class="proj-body">
+                In studio, I was given a version of an application called MEDx which gives users a dashboard
+                to view their medical information, specifically users can book appointments under the "Appointments" tab.
+                All members of the studio were directed to book an appointment with Adam Ng, MD at Morristown Medical Center on April 23, 2024.
+                First, all those in studio did this task on version A, the control product. Then, I slightly changed the interface to create version B, as explained below, and everyone did
+                the same task.
+            </p>
+            <p class="proj-body">
+                This project conducts A/B testing by investigating user interactions with interface versions A and B.
+                The more effective design for improving user experience will be determined by doing statistical analysis on and objectively comparing quantitative metrics: misclick rate, time on page, and time till first click.
+            </p>
+            <h2>Interface Changes</h2>
+            <p class="proj-body">
+              <ul class="body-text">
+                <li>
+                    The background color for the "Schedule Appointment" buttons were changed to a dark blue to increase contrast with the white text
+                </li>
+                <li>
+                    The background color for the "See Appointment" buttons were changed to slightly darker light blue to increase contrast with the white text
+                </li>
+                <li>
+                    The date numbers were bolded to draw increased attention
+                </li>
+                <li>
+                    The appointment dates were rearranged to be in chronological order
+                </li>
+                <li>
+                    Rather than only a select few, all "Schedule Appointment" buttons that do not match the task description trigger a failure event, which creates and pop up that reads "You failed the task, but keep on trying"
+                </li>
+              </ul>
+            </p>
+          </div>
+        </div>
+        <img
+          class="img-fluid"
+          src="resources/images/versions.png"
+          alt="Interface A and B comparison"
+        />
+        <p>
+          Interface version A (left) and version B (right)
+        </p>
+      </div>
+      <div class="hypotheses-container">
+        <div class="row justify-content-start space">
+          <div class="col-lg-8 mx-auto">
+            <h1>Constructing Hypotheses</h1>
+            <h2>👆🏼 Misclick Rate</h2>
+            <p>This metric measures the frequency with which users click something else on the page before finding the correct button that corresponds with the given task.</p>
+            <ul class="body-text">
+              <li>
+                <strong>Null Hypothesis:</strong> There is no difference in the misclick rate between version A and version B.
+                <ul>
+                    <li>
+                    <u>Prediction:</u>  Analyzing the data, version A had 12 instances of misclicks out of 24 users whereas version B has only 5 instances
+                    of misclicks out of the same number of users. Thus, I predict that we will reject the null hypothesis, suggesting that version B has a lower misclick rate.
+
+                    </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Alternative Hypothesis:</strong> The misclick rate for version B is lower compared to version A.
+                <ul>
+                    <li>
+                    <u>Reasoning:</u> Creating distinct background colors for the "See Appointment" and "Schedule Appointment" buttons may have made it easier to locate scheduling buttons rather than accidentally clicking on "See Appointment".
+                    Further, rearranging the appointments so that their dates are in chronological order replicates users' mental models of calendars, may decrease the chance
+                    that an appointment with an incorrect date is mistakenly clicked on.
+                    </li>
+                </ul>
+              </li>
+            </ul>
+            <h2>🕐 Time on Page</h2>
+            <p>This metric is time in milliseconds that a user spends on the webpage from entering it to accomplishing the proposed task.</p>
+            <ul class="body-text">
+              <li>
+                <strong>Null Hypothesis:</strong> There is no difference in the time spent on the page between version A and version B.
+                <ul>
+                    <li>
+                    <u>Prediction:</u> Looking at the data on each user's time spent on the page, there is a significant decrease in time spent when comparing
+                    version A to version B with the exception of two outliers out of 24 user trials. This consistent trend suggests that we will reject the null hypothesis, indicating that version B allows for
+                    users to complete the given task more efficiently.
+                    </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Alternative Hypothesis:</strong> The time spent on the page for version B is shorter than for version A.
+                <ul>
+                    <li>
+                    <u>Reasoning:</u> Failure events that alert the user that they did not select the correct appointment and must try again
+                    are now triggered on every incorrect "Schedule Appointment" button rather than only a few, which may make sure that
+                    users are aware they must continue finding the correct appointment. Not leaving the user in limbo of their task success state
+                    may decrease confusion and increase efficiency of accomplishing the task, which would lower the time spent on the page.
+                    </li>
+                </ul>
+              </li>
+            </ul>
+            </ul>
+            <h2>✅ Time till First Click</h2>
+            <p>This metric is time in milliseconds it takes for users to make their first click on the page.</p>
+            <ul class="body-text">
+              <li>
+                <strong>Null Hypothesis:</strong> There is no difference in the time till first click between version A and version B.
+                <ul>
+                    <li>
+                    <u>Prediction:</u> Looking at the data on each user's time spent before their first click, there is a significant decrease in time spent when comparing
+                    version A to version B with the exception of four outliers out of 24 user trials. This consistent trend suggests that we will reject the null hypothesis, indicating that version B allows for
+                    users to approach, understand, and then navigate this interface quicker.
+                    </li>
+                </ul>
+              </li>
+              <li>
+                <strong>Alternative Hypothesis:</strong> The time till first click for version B is shorter than for version A.
+                <ul>
+                    <li>
+                    <u>Reasoning:</u> The distinct background colors for the "See Appointment" and "Schedule Appointment" buttons may have made the call-to-action clearer, decreasing
+                    hesistation on which should be pressed and, thus, making the first click happen sooner. Further, the bolding of the dates, and not the month and year which both stay constant,
+                    will draw the user's attention and make locating the correct date more efficient.
+                    </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="stat-container">
+        <div class="row justify-content-start">
+          <div class="col-lg-8 mx-auto">
+            <h1>Statistical Tests</h1>
+            <h2>👆🏼 Misclick Rate</h2>
+            <ul class="body-text">
+              <li>
+                <strong>Test chosen and why:</strong> The misclick rate data is categorical or binary, indicating whether a user did or did not misclick when trying to accomplish the given task.
+                The chi-squared test is an appropriate choice for analyzing
+                the relationship between two categorical variables, in this case, the version (A or B) and the misclick occurrence (true or false).
+              </li>
+              <li>
+                <strong>Results:</strong>
+                <table class="body-text space-bottom">
+                <tr>
+                    <th>Degrees of freedom</th>
+                    <th>Chi-squared statistic</th>
+                    <th>P-value</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>4.4630</td>
+                    <td>0.0346</td>
+                </tr>
+                </table>
+              </li>
+              <li>
+                <strong>Conclusion:</strong> The p-value of 0.0346 is less than the significance level of 0.05. This means that the p-value is statistically significant, and, therefore,
+                we reject the null hypothesis. Further, we can also assume that there is high chance the alternative hypothesis will repeat itself in other trials.
+              </li>
+              <li>
+                <strong>Analytical summary:</strong> The findings suggest that version B is likely an improvement over version A in terms of reducing misclicks. Specifically, a meaningful
+                difference in the misclick rates between the two versions was revealed, not only due to the low p-value but also due to the large chi-squared statistic which reveals that there is a strong association between the version and misclicks, with version B having a lower rate of misclicks. In other words, this difference is unlikely to have occurred by chance alone.
+                This improvement is likely due to the background color contrast between "See Appointment" and "Schedule Appointment" buttons and rearranging the appointment dates in chronological order from
+                top to bottom. These changes made the call-to-action components more prominent and the display of information on the page intuitive, reducing the instances of users accidentally clicking on the wrong areas of the page
+              </li>
+            </ul>
+            <h2>🕐 Time on Page</h2>
+            <ul class="body-text">
+              <li>
+                <strong>Test chosen and why:</strong> The time on page data is continuous and quantitative, measuring the duration spent on the page for each user to accomplish the given task.
+                The alternative hypothesis specifies a directional difference, stating that the time spent on the page for version B is expected to be shorter than for version A. Therefore,
+                a one-tailed t-test is appropriate as it tests whether the mean time on page for version B is significantly lower than the mean for version A.
+              </li>
+              <li>
+                <strong>Results:</strong>
+                <table class="body-text space-bottom">
+                <tr>
+                    <th></th>
+                    <th>Average <br> (milliseconds)</th>
+                    <th>Variance <br> (milliseconds)</th>
+                    <th>Degrees of freedom</th>
+                    <th>T-score</th>
+                    <th>P-value</th>
+                </tr>
+                <tr>
+                    <td>Both</td>
+                    <td></td>
+                    <td></td>
+                    <td>43</td>
+                    <td>-6.7413</td>
+                    <td>0.00000001574</td>
+                </tr>
+                <tr>
+                    <td>Version A</td>
+                    <td>36,139.4583</td>
+                    <td>212,313,712.7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Version B</td>
+                    <td>11,048.4583</td>
+                    <td>120,160,285.7</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+              </li>
+              <li>
+                <strong>Conclusion:</strong> The p-value of 0.00000001574 is less than the significance level of 0.05. This means that the p-value is statistically significant, and, therefore,
+                we reject the null hypothesis. Further, we can also assume that there is high chance the alternative hypothesis will repeat itself in other trials.
+              </li>
+              <li>
+                <strong>Analytical summary:</strong> The results indicate that version B is more efficient than version A in terms of the time users spend on the page.
+                On average, users spent approximately 25 seconds less on version B compared to version A, and this difference is meaningful when considering user interaction and our short attention spans. Further, the extremely low p-value and high absolute t-statistic
+                mean that there is a significant difference between version A and B.
+                I believe that this improvement is most likely due to the added failure events triggered when the user attempts to book any invalid appointment, which automatically tells the user that they must continue finding the correct appointment
+                and reduces confusion around if the desired appointment was booked or not. This change streamlines the user's task flow and increases their efficiency through providing clear indications of their appointment being booked, which is especially
+                impactful due to the importance of routine health check-in appointments.
+              </li>
+            </ul>
+            <h2>✅ Time till First Click</h2>
+            <ul class="body-text">
+              <li>
+                <strong>Test chosen and why:</strong> Similar to the time on page metric, the time till first click data is continuous and quantitative, measuring the duration until a user makes their first click during their task session.
+                The alternative hypothesis also specifies a directional difference, stating that the time till first click for version B is expected to be shorter than for version A.
+                Again, a one-tailed t-test is the appropriate choice as it tests whether the mean time till first click for version B is significantly lower than the mean for version A, aligning with the directional hypothesis.
+              </li>
+              <li>
+                <strong>Results:</strong>
+                <table class="body-text space-bottom">
+                <tr>
+                    <th></th>
+                    <th>Average <br> (milliseconds)</th>
+                    <th>Variance <br> (milliseconds)</th>
+                    <th>Degrees of freedom</th>
+                    <th>T-score</th>
+                    <th>P-value</th>
+                </tr>
+                <tr>
+                    <td>Both</td>
+                    <td></td>
+                    <td></td>
+                    <td>25</td>
+                    <td>-6.0872</td>
+                    <td>0.000001192</td>
+                </tr>
+                <tr>
+                    <td>Version A</td>
+                    <td>14476.875</td>
+                    <td>70695020.2880</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Version B</td>
+                    <td>3823.5417</td>
+                    <td>2814701.0417</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+              </li>
+              <li>
+                <strong>Conclusion:</strong> The p-value of 0.000001192 is less than the significance level of 0.05. This means that the p-value is statistically significant, and, therefore,
+                we reject the null hypothesis. Further, we can also assume that there is high chance the alternative hypothesis will repeat itself in other trials.
+              </li>
+              <li>
+                <strong>Analytical summary:</strong> Our statistical tests suggest that version B is better compared to version A in terms of the time it takes users to make their first click on the interface.
+                Users were able to identify and interact with components more quickly in version B, with an average reduction of around 10 seconds compared to version A. Further, the extremely low p-value and high absolute t-statistic
+                mean that there is a significant difference between version A and B. Additionally, the smaller variance for version B suggests that user experience was less variable and universally easier to navigate. I believe
+                that the added background color distinction between the "See Appointment" and "Schedule Appointment" buttons gave users an ability to identify which button to press much faster. Further, bolding the day allowed
+                users to more easily make distinctions between appointment dates, especially due to the fact that all of the listed appointments were during the same month and year.
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+      <div class="final-container">
+        <div class="row justify-content-start space">
+          <div class="col-lg-8 mx-auto">
+            <h1>Conclusion</h1>
+            <p class="proj-body">
+              I enjoyed this project as it allowed me to combine my analytical skills with design.
+              I appreciated applying these statistical methods to test different UI design decisions, as sometimes
+              the process of design feels very subjective. Considering an industry-setting, I can imagine where
+              these statistical justifications through the standard practice of A/B testing can become an important tool for communicating your decisions as a designer to
+              developers, product managers, etc. that understand user interaction from a very different angle.
+            </p>
+            <p class="proj-body">
+              Zooming back into this project, I was surprised to see how very small but intentional changes could make a large impact
+              on user interaction and experience. While version A was designed logically for the most part, it lacked considerations for
+              actual usability. This project really showed how truly important it is to always the center the user during every stage
+              of the product development lifecycle, and when sight of that user is lost, the smallest oversights can make a huge difference on the
+              actual experience of using said product.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,85 @@
+:root {
+  --text-dark: #444444;
+  --text-grey: #737373;
+  --text-light: #cccccc;
+  --accent: #ff5b59;
+  --font-bold: 600;
+  --font-medium: 450;
+  --font-regular: 300;
+}
+/*
+  General Component Styling
+*/
+h1 {
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
+  font-weight: var(--font-bold);
+}
+h2 {
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
+  font-weight: var(--font-regular);
+}
+h3 {
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
+  font-weight: var(--font-medium);
+}
+p,
+.body-text {
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
+  font-weight: var(--font-regular);
+  display: block;
+  font-size: 20px;
+  line-height: 2em;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+/*
+  Custom General Styling
+*/
+.space-bottom {
+  margin-bottom: 2rem;
+}
+.space {
+  padding: 3rem 0;
+}
+
+/*
+  Specific Styling
+*/
+#nav-text {
+  font-family: "Inter", sans-serif;
+  color: var(--text-dark);
+  font-weight: var(--font-regular);
+  padding-left: 1rem;
+}
+.landing-container {
+  position: relative;
+  padding-top: 20vh;
+  min-height: 45vh;
+  width: 100%;
+  padding-left: 6rem;
+}
+.context-container img {
+  width: 70%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 5px;
+}
+.context-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-right: 2rem;
+}
